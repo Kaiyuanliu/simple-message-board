@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from app import app
+from app import app, db
 from flask_testing import LiveServerTestCase
 from selenium import webdriver
 
@@ -13,11 +13,11 @@ class FunctionalTest(LiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super(FunctionalTest, cls).setUpClass()
-        cls.server_url = cls.get_server_url()
+        cls.server_url = cls.get_server_url
 
     @classmethod
     def tearDownClass(cls):
-        if cls.server_url == cls.get_server_url():
+        if cls.server_url == cls.get_server_url:
             super(FunctionalTest, cls).tearDownClass()
 
     def setUp(self):
@@ -26,6 +26,10 @@ class FunctionalTest(LiveServerTestCase):
 
     def tearDown(self):
         self.brower.quit()
+
+    @property
+    def get_server_url(self):
+        return 'http://localhost:%s' % self.port
 
 
     def test_can_create_a_message(self):
