@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys
+import unittest
 from app import app
 from flask_testing import LiveServerTestCase
 from selenium import webdriver
@@ -8,8 +8,6 @@ from selenium import webdriver
 class FunctionalTest(LiveServerTestCase):
 
     def create_app(self):
-        app.config['TESTING'] = True
-        app.config['LIVESERVER_PORT'] = 8090
         return app
 
     @classmethod
@@ -28,3 +26,13 @@ class FunctionalTest(LiveServerTestCase):
 
     def tearDown(self):
         self.brower.quit()
+
+
+    def test_can_create_a_message(self):
+        self.brower.get(self.server_url)
+        self.assertIn('Simple Message Board', self.brower.title)
+
+
+
+if __name__ == '__main__':
+    unittest.main()
