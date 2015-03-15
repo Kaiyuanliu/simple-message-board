@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from app import app, db
+from app import app
 from flask_testing import LiveServerTestCase
 from selenium import webdriver
 
@@ -8,6 +8,7 @@ from selenium import webdriver
 class FunctionalTest(LiveServerTestCase):
 
     def create_app(self):
+        app.config['LIVESERVER_PORT'] = 8493
         return app
 
     @classmethod
