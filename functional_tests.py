@@ -8,6 +8,7 @@ from selenium import webdriver
 class FunctionalTest(LiveServerTestCase):
 
     def create_app(self):
+        app.config['TESTING'] = True
         app.config['LIVESERVER_PORT'] = 8493
         return app
 
